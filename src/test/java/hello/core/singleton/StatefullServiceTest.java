@@ -5,6 +5,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 
+import java.util.AbstractList;
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class StatefullServiceTest {
@@ -21,6 +25,8 @@ class StatefullServiceTest {
         System.out.println("price = " + price);
 
         assertThat(statefulService1.order("userB",20000)).isEqualTo(20000);
+
+
     }
 
     static class TestConfig{
