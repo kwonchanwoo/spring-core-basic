@@ -22,4 +22,5 @@ public class JdbcMemberRepository implements MemberRepository {
     public Member findById(Long memberId) {
         return store.get(memberId);
     }
+<<<<<<< HEAD
 }
