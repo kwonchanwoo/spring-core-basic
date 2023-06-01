@@ -4,16 +4,16 @@ import hello.core.AutoAppConfig;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Grade;
 import hello.core.member.Member;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class AllBeanTest {
 
@@ -25,13 +25,14 @@ public class AllBeanTest {
         Member member = new Member(1L, "userA", Grade.VIP);
         int discountPrice = discountService.discount(member, 10000, "fixDiscountPolicy");
         assertThat(discountService).isInstanceOf(DiscountService.class);
-        assertThat(discountPrice).isEqualTo(1000);
+        assertThat(discountPrice).isEqualTo(9000);
 
         int discountDiscountPrice = discountService.discount(member, 20000, "rateDiscountPolicy");
-        assertThat(discountDiscountPrice).isEqualTo(2000);
+        assertThat(discountDiscountPrice).isEqualTo(18000);
 
     }
 
+    @Component
     static class DiscountService {
         private final Map<String, DiscountPolicy> policyMap;
         private final List<DiscountPolicy> policies;

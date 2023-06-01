@@ -7,8 +7,6 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
-@Primary
-@MainDiscountPolicy
 public class RateDiscountPolicy implements DiscountPolicy {
 
     private int discountPercent = 10;
@@ -16,7 +14,7 @@ public class RateDiscountPolicy implements DiscountPolicy {
     @Override
     public int discount(Member member, int price) {
         if (member.getGrade() == Grade.VIP) {
-            return price * discountPercent / 100;
+            return price - (price * discountPercent / 100);
         } else {
             return 0;
         }
